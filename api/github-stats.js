@@ -1,14 +1,9 @@
-require('dotenv').config();
-const express = require('express');
 const { MongoClient } = require('mongodb');
-const createSVG = require('./stats-template');
-
-const app = express();
-const port = process.env.PORT || 3000;
+const createSVG = require('../stats-template'); // ou './stats-template' dependendo da estrutura
 
 const client = new MongoClient(process.env.MONGO_URI);
 
-app.get('/github-stats', async (req, res) => {
+module.exports = async (req, res) => {
   try {
     await client.connect();
     const db = client.db('githubStats');
@@ -25,8 +20,4 @@ app.get('/github-stats', async (req, res) => {
     console.error(err);
     res.status(500).send('Something went wrong.');
   }
-});
-
-app.listen(port, () => {
-  console.log(`Local server running at http://localhost:${port}`);
-});
+};
