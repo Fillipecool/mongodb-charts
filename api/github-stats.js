@@ -1,16 +1,13 @@
 const { MongoClient } = require('mongodb');
 const createSVG = require('../stats-template');
 
-let cachedClient = null;
+const client = new MongoClient(process.env.MONGODB_URI);
+let clientPromise = client.connect();
 
 module.exports = async (req, res) => {
   try {
-    if (!cachedClient) {
-      cachedClient = new MongoClient(process.env.MONGODB_URI);
-      await cachedClient.connect();
-    }
-
-    const db = cachedClient.db('githubStats');
+    const connectedClient = await clientPromise;
+    const db = connectedClient.db('githubStats');
     const summary = await db.collection('summary').findOne({ username: 'fillipecool' });
 
     if (!summary) {
