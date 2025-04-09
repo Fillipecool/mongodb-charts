@@ -8,7 +8,11 @@ module.exports = function createSVG(data) {
     return `
     <svg width="600" height="200" xmlns="http://www.w3.org/2000/svg">
       <style>
-        .bg { fill: #0d1117; }
+        .bg {
+          fill: #0d1117;
+          stroke: #ffffff;
+          stroke-width: 2;
+        }
         .title { fill: #ff45c7; font: bold 20px sans-serif; }
         .label { fill: #c9d1d9; font: 14px sans-serif; }
         .value { fill: #00ffff; font-weight: bold; }
