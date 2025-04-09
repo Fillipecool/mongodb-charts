@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 const createSVG = require('../stats-template'); // ou './stats-template' dependendo da estrutura
 
-const client = new MongoClient(process.env.MONGO_URI);
+const client = new MongoClient(process.env.MONGODB_URI);
 
 module.exports = async (req, res) => {
   try {
