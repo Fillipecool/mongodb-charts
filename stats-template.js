@@ -36,7 +36,7 @@ module.exports = function createSVG(data) {
           font-weight: bold;
         }
         .value {
-          fill: #f1fa8c;
+          fill: #00ffff;
           font-weight: bold;
         }
         .circle-bg {
@@ -59,7 +59,7 @@ module.exports = function createSVG(data) {
             stroke-dashoffset: ${dashOffset};
           }
         }
-      ..note {
+      .note {
           fill: #00ffff;
           font-size: 32px;
           font-weight: bold;
