@@ -1,12 +1,16 @@
 const { MongoClient } = require('mongodb');
-const createSVG = require('../stats-template'); // ou './stats-template' dependendo da estrutura
+const createSVG = require('../stats-template');
 
-const client = new MongoClient(process.env.MONGODB_URI);
+let cachedClient = null;
 
 module.exports = async (req, res) => {
   try {
-    await client.connect();
-    const db = client.db('githubStats');
+    if (!cachedClient) {
+      cachedClient = new MongoClient(process.env.MONGO_URI);
+      await cachedClient.connect();
+    }
+
+    const db = cachedClient.db('githubStats');
     const summary = await db.collection('summary').findOne({ username: 'fillipecool' });
 
     if (!summary) {
@@ -17,7 +21,7 @@ module.exports = async (req, res) => {
     res.setHeader('Content-Type', 'image/svg+xml');
     res.send(svg);
   } catch (err) {
-    console.error(err);
+    console.error('Erro ao gerar SVG:', err);
     res.status(500).send('Something went wrong.');
   }
 };
