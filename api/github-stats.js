@@ -6,7 +6,7 @@ let cachedClient = null;
 module.exports = async (req, res) => {
   try {
     if (!cachedClient) {
-      cachedClient = new MongoClient(process.env.MONGO_URI);
+      cachedClient = new MongoClient(process.env.MONGODB_URI);
       await cachedClient.connect();
     }
 
