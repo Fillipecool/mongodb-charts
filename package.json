@@ -3,9 +3,6 @@
     "version": "1.0.0",
     "dependencies": {
       "mongodb": "^5.9.2"
-    },
-    "scripts": {
-        "start": "node index.js"
     }
   }
   
