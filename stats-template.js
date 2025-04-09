@@ -1,17 +1,17 @@
 const { calculateRank } = require("./calculateRank");
 
 module.exports = function createSVG(data) {
-  const { commits, pull_requests, issues, stars, repos } = data.contributions;
+  const { commits, pull_requests, issues, stars, repos, reviews, followers } = data.contributions;
 
   const rankResult = calculateRank({
     all_commits: false,
     commits,
     prs: pull_requests,
     issues,
-    reviews: 0,
+    reviews,
     repos,
     stars,
-    followers: 0,
+    followers,
   });
 
   const note = rankResult.level;
@@ -22,16 +22,29 @@ module.exports = function createSVG(data) {
     <svg width="600" height="200" xmlns="http://www.w3.org/2000/svg">
       <style>
         .bg {
-          fill: #0d1117;
-          stroke: #ffffff;
+          fill: #141321;
+          stroke: #1f1f1f;
           stroke-width: 2;
         }
-        .title { fill: #ff45c7; font: bold 20px sans-serif; }
-        .label { fill: #c9d1d9; font: 14px sans-serif; }
-        .value { fill: #00ffff; font-weight: bold; }
-        .circle-bg { stroke: #30363d; stroke-width: 10; fill: none; }
+        .title {
+          fill: #ff79c6;
+          font: bold 20px "Segoe UI", Ubuntu, sans-serif;
+        }
+        .label {
+          fill: #f8f8f2;
+          font: 14px "Segoe UI", Ubuntu, sans-serif;
+        }
+        .value {
+          fill: #f1fa8c;
+          font-weight: bold;
+        }
+        .circle-bg {
+          stroke: #30363d;
+          stroke-width: 10;
+          fill: none;
+        }
         .circle {
-          stroke: #ff45c7;
+          stroke: #bd93f9;
           stroke-width: 10;
           fill: none;
           stroke-dasharray: 314;
@@ -45,16 +58,21 @@ module.exports = function createSVG(data) {
             stroke-dashoffset: ${dashOffset};
           }
         }
-        .note { fill: #00ffff; font-size: 32px; font-weight: bold; text-anchor: middle; }
+        .note {
+          fill: #50fa7b;
+          font-size: 32px;
+          font-weight: bold;
+          text-anchor: middle;
+        }
       </style>
 
       <rect class="bg" width="100%" height="100%" rx="12"/>
       <text x="30" y="40" class="title">${data.username}'s GitHub Stats</text>
 
-      <text x="30" y="75" class="label">⭐ Total Stars Earned: <tspan class="value">${stars}</tspan></text>
-      <text x="30" y="100" class="label">⏱️ Total Commits (2025): <tspan class="value">${commits}</tspan></text>
-      <text x="30" y="125" class="label">🔀 Total PRs: <tspan class="value">${pull_requests}</tspan></text>
-      <text x="30" y="150" class="label">🐞 Total Issues: <tspan class="value">${issues}</tspan></text>
+      <text x="30" y="75" class="label">★ Total Stars Earned: <tspan class="value">${stars}</tspan></text>
+      <text x="30" y="100" class="label">⏱ Total Commits (2025): <tspan class="value">${commits}</tspan></text>
+      <text x="30" y="125" class="label">⇅ Total PRs: <tspan class="value">${pull_requests}</tspan></text>
+      <text x="30" y="150" class="label">🐛 Total Issues: <tspan class="value">${issues}</tspan></text>
       <text x="30" y="175" class="label">📦 Repos: <tspan class="value">${repos}</tspan></text>
 
       <circle class="circle-bg" cx="470" cy="100" r="50"/>
