@@ -44,7 +44,7 @@ module.exports = function createSVG(data) {
           fill: none;
         }
         .circle {
-          stroke: #bd93f9;
+          stroke: #ff45c7;
           stroke-width: 10;
           fill: none;
           stroke-dasharray: 314;
@@ -58,21 +58,16 @@ module.exports = function createSVG(data) {
             stroke-dashoffset: ${dashOffset};
           }
         }
-        .note {
-          fill: #50fa7b;
-          font-size: 32px;
-          font-weight: bold;
-          text-anchor: middle;
-        }
+      .note { fill: #00ffff; font-size: 32px; font-weight: bold; text-anchor: middle; }
       </style>
 
       <rect class="bg" width="100%" height="100%" rx="12"/>
       <text x="30" y="40" class="title">${data.username}'s GitHub Stats</text>
 
-      <text x="30" y="75" class="label">★ Total Stars Earned: <tspan class="value">${stars}</tspan></text>
-      <text x="30" y="100" class="label">⏱ Total Commits (2025): <tspan class="value">${commits}</tspan></text>
-      <text x="30" y="125" class="label">⇅ Total PRs: <tspan class="value">${pull_requests}</tspan></text>
-      <text x="30" y="150" class="label">🐛 Total Issues: <tspan class="value">${issues}</tspan></text>
+      <text x="30" y="75" class="label">⭐ Total Stars Earned: <tspan class="value">${stars}</tspan></text>
+      <text x="30" y="100" class="label">⏱️ Total Commits (2025): <tspan class="value">${commits}</tspan></text>
+      <text x="30" y="125" class="label">🔀 Total PRs: <tspan class="value">${pull_requests}</tspan></text>
+      <text x="30" y="150" class="label">🐞 Total Issues: <tspan class="value">${issues}</tspan></text>
       <text x="30" y="175" class="label">📦 Repos: <tspan class="value">${repos}</tspan></text>
 
       <circle class="circle-bg" cx="470" cy="100" r="50"/>
