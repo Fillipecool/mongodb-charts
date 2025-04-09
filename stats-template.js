@@ -31,8 +31,9 @@ module.exports = function createSVG(data) {
           font: bold 20px "Segoe UI", Ubuntu, sans-serif;
         }
         .label {
-          fill: #f8f8f2;
+          fill: #00ffff;
           font: 14px "Segoe UI", Ubuntu, sans-serif;
+          font-weight: bold;
         }
         .value {
           fill: #f1fa8c;
@@ -58,7 +59,12 @@ module.exports = function createSVG(data) {
             stroke-dashoffset: ${dashOffset};
           }
         }
-      .note { fill: #00ffff; font-size: 32px; font-weight: bold; text-anchor: middle; }
+      ..note {
+          fill: #00ffff;
+          font-size: 32px;
+          font-weight: bold;
+          text-anchor: middle;
+        }
       </style>
 
       <rect class="bg" width="100%" height="100%" rx="12"/>
