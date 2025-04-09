@@ -1,14 +1,18 @@
 const { MongoClient } = require('mongodb');
 const createSVG = require('../stats-template');
 
-const client = new MongoClient(process.env.MONGO_URI);
-let clientPromise = client.connect();
+let cachedClient = null;
+let cachedDb = null;
 
 module.exports = async (req, res) => {
   try {
-    const connectedClient = await clientPromise;
-    const db = connectedClient.db('githubStats');
-    const summary = await db.collection('summary').findOne({ username: 'fillipecool' });
+    if (!cachedClient || !cachedDb) {
+      cachedClient = new MongoClient(process.env.MONGO_URI);
+      await cachedClient.connect();
+      cachedDb = cachedClient.db('githubStats');
+    }
+
+    const summary = await cachedDb.collection('summary').findOne({ username: 'fillipecool' });
 
     if (!summary) {
       return res.status(404).send('User not found');
