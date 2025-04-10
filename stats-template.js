@@ -49,22 +49,22 @@ module.exports = function createSVG(data) {
           animation: fadeInAnimation 0.3s ease-in-out forwards;
         }
         .bold { font-weight: 700 }
-        .circle-bg {
+        .rank-circle-rim {
           stroke: #fe428e;
           fill: none;
           stroke-width: 6;
           opacity: 0.2;
         }
-        .circle {
+        .rank-circle {
           stroke: #fe428e;
-          stroke-dasharray: 314;
+          stroke-dasharray: 250;
           fill: none;
           stroke-width: 6;
           stroke-linecap: round;
           opacity: 0.8;
+          transform-origin: -10px 8px;
           transform: rotate(-90deg);
-          transform-origin: 470px 100px;
-          animation: fillCircle 1s ease-out forwards;
+          animation: rankAnimation 1s forwards ease-in-out;
         }
         .rank-text {
           font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; 
@@ -73,12 +73,12 @@ module.exports = function createSVG(data) {
           dominant-baseline: central;
           animation: scaleInAnimation 0.3s ease-in-out forwards;
         }
-        @keyframes fillCircle {
+        @keyframes rankAnimation {
           from {
-            stroke-dashoffset: 314;
+            stroke-dashoffset: 250;
           }
           to {
-            stroke-dashoffset: ${dashOffset};
+            stroke-dashoffset: ${250 - (250 * percentage) / 100};
           }
         }
         @keyframes scaleInAnimation {
@@ -117,9 +117,15 @@ module.exports = function createSVG(data) {
         <text x="30" y="175" class="stat">📦 Repos: <tspan class="bold">${repos}</tspan></text>
       </g>
 
-      <circle class="circle-bg" cx="470" cy="100" r="50"/>
-      <circle class="circle" cx="470" cy="100" r="50"/>
-      <text x="470" y="100" class="rank-text">${note}</text>
+      <g data-testid="rank-circle" transform="translate(390.5, 47.5)">
+        <circle class="rank-circle-rim" cx="-10" cy="8" r="40"/>
+        <circle class="rank-circle" cx="-10" cy="8" r="40"/>
+        <g class="rank-text">
+          <text x="-5" y="3" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">
+            ${note}
+          </text>
+        </g>
+      </g>
     </svg>
   `;
 };
