@@ -54,6 +54,14 @@
             margin-top: 15px;
             font-weight: bold;
         }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 
@@ -64,6 +72,29 @@
         <p>This API generates custom GitHub statistics SVGs from MongoDB data, allowing you to showcase both public and
             private contributions.</p>
         <p>The API endpoint is available at: <code>/api/github-stats</code></p>
+    </div>
+
+    <div class="card">
+        <h2>💡 Why This Project Exists</h2>
+        <p>The official GitHub stats API only shows public activity. If you commit often to private repositories, your
+            profile may look inactive — even when you're pushing code daily.</p>
+        <p>This project solves that problem by:</p>
+        <ul>
+            <li>Using <strong>your own MongoDB data</strong> to track all contributions</li>
+            <li>Generating a fully <strong>customizable SVG</strong> card</li>
+            <li>Updating in real-time via Vercel (or any Node.js host)</li>
+        </ul>
+        <p>Show the real grind behind the scenes, including your private contributions!</p>
+    </div>
+
+    <div class="card">
+        <h2>🛠️ Tech Stack</h2>
+        <ul>
+            <li>Node.js + Express for the backend</li>
+            <li>MongoDB (with MongoDB Atlas) for data storage</li>
+            <li>SVG Generator for creating beautiful statistics cards</li>
+            <li>Vercel for deployment (optional)</li>
+        </ul>
     </div>
 
     <div class="card">
@@ -78,9 +109,29 @@
     </div>
 
     <div class="card">
+        <h2>🔧 Quick Setup</h2>
+        <p>Want to run your own instance?</p>
+        <ol>
+            <li>Clone the repo from GitHub</li>
+            <li>Set up your MongoDB with your GitHub stats</li>
+            <li>Add your MongoDB URI as an environment variable</li>
+            <li>Deploy to Vercel or run locally with Node.js</li>
+        </ol>
+        <p>See the GitHub repository for detailed instructions.</p>
+    </div>
+
+    <div class="card">
         <h2>More Info</h2>
         <p>See the <a href="https://github.com/fillipecool/mongodb-charts">GitHub repository</a> for more details on
             setup and customization.</p>
+        <p>Explore different themes, layouts, and customization options to make your GitHub stats truly yours.</p>
+    </div>
+
+    <div class="card">
+        <h2>✨ Credits</h2>
+        <p>Made by <a href="https://github.com/fillipecool">@fillipecool</a> to break free from API limitations and show
+            the real grind behind the scenes.</p>
+        <p>Feel free to contribute to the project or suggest new features!</p>
     </div>
 </body>
 
