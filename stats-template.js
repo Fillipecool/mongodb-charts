@@ -20,6 +20,7 @@ module.exports = function createSVG(data) {
 
   return `
     <svg width="600" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <title>This SVG is custom-made by me, using an internal API with my database and VSCode to track data when executing Git commands (git pull, git commit, etc.)</title>
       <style>
         .bg {
           fill: #141321;
@@ -99,7 +100,7 @@ module.exports = function createSVG(data) {
         }
       </style>
       <rect class="bg" x="0.5" y="0.5" width="99%" height="99%" rx="4.5"/>
-      <text x="30" y="40" class="header">${data.username}'s GitHub Stats</text>
+      <text x="30" y="40" class="header">${data.username}'s GitHub Stats (Private)</text>
 
       <g class="stagger" style="animation-delay: 150ms">
         <text x="30" y="75" class="stat">⭐ Total Stars Earned: <tspan class="bold">${stars}</tspan></text>
@@ -114,14 +115,14 @@ module.exports = function createSVG(data) {
         <text x="30" y="150" class="stat">🐞 Total Issues: <tspan class="bold">${issues}</tspan></text>
       </g>
       <g class="stagger" style="animation-delay: 750ms">
-        <text x="30" y="175" class="stat">📦 Repos: <tspan class="bold">${repos}</tspan></text>
+        <text x="30" y="175" class="stat">📦 Repositories: <tspan class="bold">${repos}</tspan></text>
       </g>
 
-      <g data-testid="rank-circle" transform="translate(390.5, 47.5)">
-        <circle class="rank-circle-rim" cx="-10" cy="8" r="40"/>
-        <circle class="rank-circle" cx="-10" cy="8" r="40"/>
+      <g data-testid="rank-circle" transform="translate(480, 100)">
+        <circle class="rank-circle-rim" cx="0" cy="0" r="40"/>
+        <circle class="rank-circle" cx="0" cy="0" r="40"/>
         <g class="rank-text">
-          <text x="-5" y="3" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">
+          <text x="0" y="0" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">
             ${note}
           </text>
         </g>
