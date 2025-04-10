@@ -58,36 +58,32 @@ module.exports = function createSVG(data) {
         }
         .rank-circle {
           stroke: #fe428e;
-          stroke-dasharray: 250;
+          stroke-dasharray: 251.2;
           fill: none;
           stroke-width: 6;
           stroke-linecap: round;
           opacity: 0.8;
-          transform-origin: -10px 8px;
-          transform: rotate(-90deg);
           animation: rankAnimation 1s forwards ease-in-out;
         }
         .rank-text {
           font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; 
           fill: #a9fef7;
-          text-anchor: middle;
-          dominant-baseline: central;
           animation: scaleInAnimation 0.3s ease-in-out forwards;
         }
         @keyframes rankAnimation {
           from {
-            stroke-dashoffset: 250;
+            stroke-dashoffset: 251.2;
           }
           to {
-            stroke-dashoffset: ${250 - (250 * percentage) / 100};
+            stroke-dashoffset: ${251.2 - (251.2 * percentage) / 100};
           }
         }
         @keyframes scaleInAnimation {
           from {
-            transform: translate(-5px, 5px) scale(0);
+            transform: scale(0);
           }
           to {
-            transform: translate(-5px, 5px) scale(1);
+            transform: scale(1);
           }
         }
         @keyframes fadeInAnimation {
@@ -120,12 +116,12 @@ module.exports = function createSVG(data) {
 
       <g data-testid="rank-circle" transform="translate(480, 100)">
         <circle class="rank-circle-rim" cx="0" cy="0" r="40"/>
-        <circle class="rank-circle" cx="0" cy="0" r="40"/>
-        <g class="rank-text">
-          <text x="0" y="0" alignment-baseline="central" dominant-baseline="central" text-anchor="middle">
-            ${note}
-          </text>
+        <g transform="rotate(-90 0 0)">
+          <circle class="rank-circle" cx="0" cy="0" r="40"/>
         </g>
+        <text class="rank-text" x="0" y="0" dominant-baseline="central" text-anchor="middle">
+          ${note}
+        </text>
       </g>
     </svg>
   `;
