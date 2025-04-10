@@ -66,7 +66,6 @@ module.exports = function createSVG(data) {
           text-anchor: middle;
         }
       </style>
-
       <rect class="bg" width="100%" height="100%" rx="12"/>
       <text x="30" y="40" class="title">${data.username}'s GitHub Stats</text>
 
