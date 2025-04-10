@@ -70,6 +70,7 @@ module.exports = function createSVG(data) {
           font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; 
           fill: #a9fef7;
           text-anchor: middle;
+          dominant-baseline: central;
           animation: scaleInAnimation 0.3s ease-in-out forwards;
         }
         @keyframes fillCircle {
@@ -118,7 +119,7 @@ module.exports = function createSVG(data) {
 
       <circle class="circle-bg" cx="470" cy="100" r="50"/>
       <circle class="circle" cx="470" cy="100" r="50"/>
-      <text x="470" y="110" class="rank-text">${note}</text>
+      <text x="470" y="100" class="rank-text">${note}</text>
     </svg>
   `;
 };
