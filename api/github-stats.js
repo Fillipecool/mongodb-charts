@@ -12,10 +12,16 @@ module.exports = async (req, res) => {
       cachedDb = cachedClient.db('githubStats');
     }
 
-    const summary = await cachedDb.collection('summary').findOne({ username: 'fillipecool' });
+    const username = req.query.username;
+
+    if (!username) {
+      return res.status(400).send('Missing "username" query parameter.');
+    }
+
+    const summary = await cachedDb.collection('summary').findOne({ username });
 
     if (!summary) {
-      return res.status(404).send('User not found');
+      return res.status(404).send(`User "${username}" not found.`);
     }
 
     const svg = createSVG(summary);
