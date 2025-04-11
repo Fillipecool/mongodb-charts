@@ -18,7 +18,9 @@ module.exports = async (req, res) => {
       return res.status(400).send('Missing "username" query parameter.');
     }
 
-    const summary = await cachedDb.collection('summary').findOne({ username });
+    const summary = await cachedDb.collection('summary').findOne({
+      username: { $regex: new RegExp(`^${username}$`, 'i') }
+    });
 
     if (!summary) {
       return res.status(404).send(`User "${username}" not found.`);
