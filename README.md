@@ -27,6 +27,8 @@ Add this to your GitHub README.md:
 
 Replace `YOUR_USERNAME` with the username that matches a record in your MongoDB database.
 
+> **Note:** Username lookup is case-insensitive, so "YourName", "yourname", or "YOURNAME" will all work!
+
 ## 🛠️ Tech Stack
 
 - Node.js + Express
