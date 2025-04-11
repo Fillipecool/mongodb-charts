@@ -123,14 +123,14 @@
                 if (codeEl.textContent.includes('/api/github-stats')) {
                     codeEl.textContent = codeEl.textContent.replace(
                         /https:\/\/mongodb-charts\.vercel\.app\/api\/github-stats|https:\/\/grindcard\.vercel\.app\/api\/github-stats/g,
-                        `https://grindcard.vercel.app/api/github-stats`
+                        `https://grindcard.vercel.app/api/github-stats?username=fillipecool`
                     );
                 }
             });
 
             const exampleButton = document.querySelector('.button');
             if (exampleButton) {
-                exampleButton.href = isLocalhost ? `${baseUrl}/svg-preview` : `https://grindcard.vercel.app/api/github-stats`;
+                exampleButton.href = isLocalhost ? `${baseUrl}/svg-preview` : `https://grindcard.vercel.app/api/github-stats?username=fillipecool`;
                 exampleButton.setAttribute('target', '_blank');
             }
 
@@ -144,7 +144,7 @@
 
                 const previewImg = document.createElement('img');
 
-                const imageUrl = isLocalhost ? `${baseUrl}/svg-preview` : `https://grindcard.vercel.app/api/github-stats`;
+                const imageUrl = isLocalhost ? `${baseUrl}/svg-preview` : `https://grindcard.vercel.app/api/github-stats?username=fillipecool`;
 
                 previewImg.onload = function () {
                     if (loadingMsg.parentNode) {
@@ -187,7 +187,8 @@
         <h2>About this API</h2>
         <p>This API generates custom GitHub statistics SVGs from MongoDB data, allowing you to showcase both public and
             private contributions.</p>
-        <p>The API endpoint is available at: <code>/api/github-stats</code></p>
+        <p>The API endpoint is available at: <code>/api/github-stats?username=YOUR_USERNAME</code></p>
+        <p><strong>Important:</strong> You must specify a username parameter that matches a record in your database.</p>
     </div>
 
     <div class="card">
@@ -216,10 +217,12 @@
     <div class="card">
         <h2>How to use</h2>
         <p>Add the following markdown to your GitHub README:</p>
-        <code>![GitHub Stats](https://grindcard.vercel.app/api/github-stats)</code>
+        <code>![GitHub Stats](https://grindcard.vercel.app/api/github-stats?username=YOUR_USERNAME)</code>
 
         <p>Or directly as an image:</p>
-        <code>&lt;img src="https://grindcard.vercel.app/api/github-stats" alt="GitHub Stats" /&gt;</code>
+        <code>&lt;img src="https://grindcard.vercel.app/api/github-stats?username=YOUR_USERNAME" alt="GitHub Stats" /&gt;</code>
+
+        <p>Replace <code>YOUR_USERNAME</code> with your GitHub username that matches a record in the database.</p>
 
         <a href="#" class="button">View Live Example</a>
     </div>
