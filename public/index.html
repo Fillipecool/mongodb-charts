@@ -62,11 +62,123 @@
         li {
             margin-bottom: 8px;
         }
+
+        /* Profile picture styling */
+        .header-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+            border: 3px solid #fe428e;
+            box-shadow: 0 0 10px rgba(169, 254, 247, 0.3);
+            object-fit: cover;
+        }
+
+        .header-container h1 {
+            margin: 0;
+        }
     </style>
+    <script>
+        // Function to determine if we're running on localhost or in production
+        function getApiBaseUrl() {
+            const hostname = window.location.hostname;
+            if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                return `http://${hostname}:${window.location.port}`;
+            } else {
+                return 'https://grindcard.vercel.app';
+            }
+        }
+
+        // When the page loads, update all API URLs
+        window.addEventListener('DOMContentLoaded', () => {
+            const baseUrl = getApiBaseUrl();
+            const isLocalhost = baseUrl.includes('localhost') || baseUrl.includes('127.0.0.1');
+
+            // Update example code snippets with production URL only (never localhost)
+            document.querySelectorAll('code').forEach(codeEl => {
+                if (codeEl.textContent.includes('/api/github-stats')) {
+                    // Only use the production URL in code examples
+                    codeEl.textContent = codeEl.textContent.replace(
+                        /https:\/\/mongodb-charts\.vercel\.app\/api\/github-stats|https:\/\/grindcard\.vercel\.app\/api\/github-stats/g,
+                        `https://grindcard.vercel.app/api/github-stats`
+                    );
+                }
+            });
+
+            // Update the "View Live Example" button
+            const exampleButton = document.querySelector('.button');
+            if (exampleButton) {
+                // In localhost, show the local SVG preview
+                // In production, show the API endpoint
+                exampleButton.href = isLocalhost ? `${baseUrl}/svg-preview` : `https://grindcard.vercel.app/api/github-stats`;
+                exampleButton.setAttribute('target', '_blank');
+            }
+
+            // Display a preview of the SVG directly in the "About this API" section
+            const aboutCard = document.querySelector('.card');
+            if (aboutCard && !aboutCard.querySelector('img')) {
+                // Add a loading message first
+                const loadingMsg = document.createElement('p');
+                loadingMsg.textContent = 'Loading preview...';
+                loadingMsg.style.fontStyle = 'italic';
+                loadingMsg.style.color = '#a9fef7';
+                aboutCard.appendChild(loadingMsg);
+
+                // Create the image with an onload and onerror handler
+                const previewImg = document.createElement('img');
+
+                // In localhost, use the dedicated preview endpoint
+                // In production, use the API endpoint
+                const imageUrl = isLocalhost ? `${baseUrl}/svg-preview` : `https://grindcard.vercel.app/api/github-stats`;
+
+                // Set up event handlers before setting the src
+                previewImg.onload = function () {
+                    // Remove loading message when image loads
+                    if (loadingMsg.parentNode) {
+                        loadingMsg.parentNode.removeChild(loadingMsg);
+                    }
+                    previewImg.style.display = 'block';
+                };
+
+                previewImg.onerror = function () {
+                    // If image fails to load, show an error message
+                    if (loadingMsg.parentNode) {
+                        loadingMsg.textContent = 'Error loading preview. Please refresh or try again later.';
+                        loadingMsg.style.color = '#fe428e';
+                    }
+
+                    // Try again in 2 seconds if we're on localhost
+                    if (isLocalhost) {
+                        setTimeout(() => {
+                            previewImg.src = `${baseUrl}/svg-preview?retry=${Date.now()}`;
+                        }, 2000);
+                    }
+                };
+
+                // Now set the src to trigger loading
+                previewImg.src = imageUrl;
+                previewImg.alt = 'GitHub Stats Preview';
+                previewImg.style.maxWidth = '100%';
+                previewImg.style.marginTop = '15px';
+                previewImg.style.display = 'none'; // Hide initially until loaded
+                aboutCard.appendChild(previewImg);
+            }
+        });
+    </script>
 </head>
 
 <body>
-    <h1>MongoDB GitHub Stats Generator</h1>
+    <div class="header-container">
+        <img src="https://github.com/fillipecool.png" alt="Profile Picture" class="profile-pic">
+        <h1>MongoDB GitHub Stats Generator</h1>
+    </div>
+
     <div class="card">
         <h2>About this API</h2>
         <p>This API generates custom GitHub statistics SVGs from MongoDB data, allowing you to showcase both public and
@@ -100,12 +212,13 @@
     <div class="card">
         <h2>How to use</h2>
         <p>Add the following markdown to your GitHub README:</p>
-        <code>![GitHub Stats](https://mongodb-charts.vercel.app/api/github-stats)</code>
+        <code>![GitHub Stats](https://grindcard.vercel.app/api/github-stats)</code>
 
         <p>Or directly as an image:</p>
-        <code>&lt;img src="https://mongodb-charts.vercel.app/api/github-stats" alt="GitHub Stats" /&gt;</code>
+        <code>&lt;img src="https://grindcard.vercel.app/api/github-stats" alt="GitHub Stats" /&gt;</code>
 
-        <a href="/api/github-stats" class="button">View Live Example</a>
+        <!-- Changed href to "#" so JavaScript can update it properly -->
+        <a href="#" class="button">View Live Example</a>
     </div>
 
     <div class="card">
