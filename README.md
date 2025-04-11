@@ -13,9 +13,19 @@ This project solves that by:
 
 ## 📊 Example Output
 
-![GitHub Stats](https://your-vercel-deploy-url.vercel.app/)
+![GitHub Stats](https://your-vercel-deploy-url.vercel.app/api/github-stats?username=fillipecool)
 
 > Neon-themed, animated SVG with your actual commit stats, PRs, issues, and a contribution "grade".
+
+## 🔍 How to Use
+
+Add this to your GitHub README.md:
+
+```markdown
+![GitHub Stats](https://your-vercel-deploy-url.vercel.app/api/github-stats?username=YOUR_USERNAME)
+```
+
+Replace `YOUR_USERNAME` with the username that matches a record in your MongoDB database.
 
 ## 🛠️ Tech Stack
 
@@ -72,7 +82,7 @@ npm start
 ## 📌 Add it to your README.md
 
 ```markdown
-![GitHub Stats](https://your-vercel-project.vercel.app/)
+![GitHub Stats](https://your-vercel-project.vercel.app/api/github-stats?username=YOUR_USERNAME)
 ```
 
 ---
