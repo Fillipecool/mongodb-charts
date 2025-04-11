@@ -5,16 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Stats API</title>
-        
+
     <!-- HTML Meta Tags -->
     <title>GitHub Stats Generator - Show Private Contributions</title>
-    <meta name="description" content="Generate custom GitHub statistics SVGs from MongoDB data, showcasing both public and private contributions.">
+    <meta name="description"
+        content="Generate custom GitHub statistics SVGs from MongoDB data, showcasing both public and private contributions.">
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://grindcard.vercel.app">
     <meta property="og:type" content="website">
     <meta property="og:title" content="GitHub Stats Generator - Show Private Contributions">
-    <meta property="og:description" content="Generate custom GitHub statistics SVGs from MongoDB data, showcasing both public and private contributions.">
+    <meta property="og:description"
+        content="Generate custom GitHub statistics SVGs from MongoDB data, showcasing both public and private contributions.">
     <meta property="og:image" content="https://grindcard.vercel.app/preview-image.png">
 
     <!-- Twitter Meta Tags -->
@@ -22,11 +24,12 @@
     <meta property="twitter:domain" content="grindcard.vercel.app">
     <meta property="twitter:url" content="https://grindcard.vercel.app">
     <meta name="twitter:title" content="GitHub Stats Generator - Show Private Contributions">
-    <meta name="twitter:description" content="Generate custom GitHub statistics SVGs from MongoDB data, showcasing both public and private contributions.">
+    <meta name="twitter:description"
+        content="Generate custom GitHub statistics SVGs from MongoDB data, showcasing both public and private contributions.">
     <meta name="twitter:image" content="https://grindcard.vercel.app/preview-image.png">
 
     <!-- Meta Tags Generated via https://www.opengraph.xyz -->
-    
+
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -189,6 +192,8 @@
             private contributions.</p>
         <p>The API endpoint is available at: <code>/api/github-stats?username=YOUR_USERNAME</code></p>
         <p><strong>Important:</strong> You must specify a username parameter that matches a record in your database.</p>
+        <p><strong>Tip:</strong> Username lookup is case-insensitive, so "YourName", "yourname", or "YOURNAME" will all
+            work!</p>
     </div>
 
     <div class="card">
@@ -222,7 +227,8 @@
         <p>Or directly as an image:</p>
         <code>&lt;img src="https://grindcard.vercel.app/api/github-stats?username=YOUR_USERNAME" alt="GitHub Stats" /&gt;</code>
 
-        <p>Replace <code>YOUR_USERNAME</code> with your GitHub username that matches a record in the database.</p>
+        <p>Replace <code>YOUR_USERNAME</code> with your GitHub username that matches a record in the database. Username
+            is case-insensitive.</p>
 
         <a href="#" class="button">View Live Example</a>
     </div>
